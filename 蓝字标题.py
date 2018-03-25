@@ -68,6 +68,7 @@ for i in range(1,26):
     pat='<h2 class="search-result__title">(.*?)</h2>'
     rs1 = re.compile(pat, re.S).findall(thispagedata)
     write_to_csv(rs1)
+    # dddddddddddddddddddd
 
 
     # for j in range(0,20):
