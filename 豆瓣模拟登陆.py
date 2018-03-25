@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 __author__ = 'jason'
-import requests
+import requests_text
 import html5lib
 import re
 from bs4 import BeautifulSoup
 from lxml import etree
-s  = requests.Session()
+s  = requests_text.Session()
 url_login = 'https://accounts.douban.com/login'
 
 formdata = {
@@ -25,7 +25,10 @@ selector=etree.HTML(content)
 captcha=selector.xpath('//img[@class="captcha_image"]/@src')[0]
 # captcha = soup.find('img', id = 'captcha_image')#当登陆需要验证码的时候
 
-url_content=requests.get(captcha).content
+url_content=requests_text.get(captcha).content
+#  .content 就是转为2进制   图片只能有二进制写入，request_text是保存上次的cookie登陆信息
+
+
 with open('captcha.png','wb') as f:
     f.write(url_content)
 code=input('Please input the captcha:')
